@@ -126,7 +126,9 @@ PrivateKey = $server_priv
 ListenPort = $port 
 Address = ${ip4_prefix}1/24, ${ip6_prefix}1/64
 PostUp = iptables -A FORWARD -i $wgiface -j ACCEPT; iptables -t nat -A POSTROUTING -o $iface -j MASQUERADE
+PostUp = ip6tables -A FORWARD -i $wgiface -j ACCEPT; ip6tables -t nat -A POSTROUTING -o $iface -j MASQUERADE
 PostDown = iptables -D FORWARD -i $wgiface -j ACCEPT; iptables -t nat -D POSTROUTING -o $iface -j MASQUERADE
+PostDown = ip6tables -D FORWARD -i $wgiface -j ACCEPT; ip6tables -t nat -D POSTROUTING -o $iface -j MASQUERADE
 
 EOF
 
